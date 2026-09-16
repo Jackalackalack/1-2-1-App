@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getSetupOAuthClient } from "@/lib/google";
+export const dynamic = "force-dynamic"; 
 
 // Narrowest scopes that cover what this app actually does:
 // - calendar.readonly: checking free/busy
