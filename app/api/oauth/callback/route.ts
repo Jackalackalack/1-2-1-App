@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getSetupOAuthClient } from "@/lib/google";
+export const dynamic = "force-dynamic"; 
 
 export async function GET(req: Request) {
   if (process.env.GOOGLE_REFRESH_TOKEN) {
