@@ -5,10 +5,14 @@ function getOAuthClient() {
   const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
   const redirectUri = process.env.GOOGLE_REDIRECT_URI;
 
-  if (!clientId || !clientSecret || !redirectUri) {
-    throw new Error(
-      "Missing GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET or GOOGLE_REDIRECT_URI env vars."
-    );
+  const missing = [
+    !clientId && "GOOGLE_CLIENT_ID",
+    !clientSecret && "GOOGLE_CLIENT_SECRET",
+    !redirectUri && "GOOGLE_REDIRECT_URI",
+  ].filter(Boolean);
+
+  if (missing.length > 0) {
+    throw new Error(`Missing environment variable(s): ${missing.join(", ")}`);
   }
 
   return new google.auth.OAuth2(clientId, clientSecret, redirectUri);

@@ -3,7 +3,8 @@ import { getCalendarClient } from "@/lib/google";
 import { isBlackedOut } from "@/lib/availability";
 import { config } from "@/lib/config";
 import { isRateLimited, getClientIp } from "@/lib/rateLimit";
-export const dynamic = "force-dynamic"; 
+
+export const dynamic = "force-dynamic";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MAX_NAME_LENGTH = 100;

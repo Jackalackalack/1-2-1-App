@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getSetupOAuthClient } from "@/lib/google";
-export const dynamic = "force-dynamic"; 
+
+export const dynamic = "force-dynamic";
 
 // Narrowest scopes that cover what this app actually does:
 // - calendar.readonly: checking free/busy
@@ -22,11 +23,19 @@ export async function GET() {
     });
   }
 
-  const client = getSetupOAuthClient();
-  const url = client.generateAuthUrl({
-    access_type: "offline",
-    prompt: "consent", // forces a refresh token even on repeat visits
-    scope: SCOPES,
-  });
-  return NextResponse.redirect(url);
+  try {
+    const client = getSetupOAuthClient();
+    const url = client.generateAuthUrl({
+      access_type: "offline",
+      prompt: "consent", // forces a refresh token even on repeat visits
+      scope: SCOPES,
+    });
+    return NextResponse.redirect(url);
+  } catch (err: any) {
+    return new NextResponse(
+      `Setup can't continue yet: ${err.message ?? "unknown error"}\n\n` +
+        "Check Vercel > Settings > Environment Variables, then redeploy after adding or fixing anything.",
+      { status: 500, headers: { "Content-Type": "text/plain" } }
+    );
+  }
 }
