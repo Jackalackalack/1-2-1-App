@@ -14,9 +14,10 @@ export default function Home() {
         <div className="page-bg-perforation line-2" />
       </div>
       <main className="page">
+        <CreatorTag />
         <div className="page-grid">
           <section className="header-box">
-            <h1>Book 1-2-1 with Jack Abraham</h1>
+            <h1>Book a 1-2-1 with Jack Abraham</h1>
             <p className="header-tagline">Music&nbsp;-&nbsp;Education&nbsp;-&nbsp;Mentorship</p>
           </section>
 
@@ -50,7 +51,6 @@ export default function Home() {
           <BookingForm />
         </div>
       </main>
-      <CreatorTag />
     </>
   );
 }
