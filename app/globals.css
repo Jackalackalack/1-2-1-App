@@ -524,8 +524,8 @@ body {
 
 .creator-tag {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 24px;
+  right: 24px;
   z-index: 5;
   font-family: var(--font-sans), sans-serif;
   font-weight: 700;
@@ -547,8 +547,8 @@ body {
 
 .creator-panel {
   position: absolute;
-  top: 54px;
-  right: 0;
+  top: 78px;
+  right: 24px;
   z-index: 6;
   width: 250px;
   background: var(--paper);
@@ -679,18 +679,19 @@ body {
 
 @media (max-width: 640px) {
   .creator-tag {
-    top: 0;
-    right: 0;
+    top: 16px;
+    right: 16px;
     font-size: 11px;
     padding: 8px 13px;
   }
   .creator-panel {
-    top: 46px;
-    right: 0;
+    top: 60px;
+    right: 16px;
     left: auto;
     width: 220px;
   }
   .site-credit-bar {
+    position: relative;
     font-size: 11px;
     padding: 9px 12px;
   }

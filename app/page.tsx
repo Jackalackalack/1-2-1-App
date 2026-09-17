@@ -6,7 +6,6 @@ import { config } from "@/lib/config";
 export default function Home() {
   return (
     <>
-      <SiteCreditBar />
       <div className="page-bg" aria-hidden="true">
         <div className="page-bg-texture" />
         <div className="page-bg-grid" />
@@ -51,6 +50,7 @@ export default function Home() {
           <BookingForm />
         </div>
       </main>
+      <SiteCreditBar />
     </>
   );
 }
