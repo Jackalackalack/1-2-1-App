@@ -39,8 +39,8 @@ export const config = {
   // want to be bookable, and put that calendar's ID here. Find the ID in
   // Google Calendar > Settings > [calendar name] > Integrate calendar >
   // Calendar ID. Leave as null to just use workingHours instead.
-  availabilityCalendarId: "c1556377917879a161d18a38ccfc147963947ec0fcb0f9f98a1126ddea74694f@group.calendar.google.com" ,
-  
+  availabilityCalendarId: "c1556377917879a161d18a38ccfc147963947ec0fcb0f9f98a1126ddea74694f@group.calendar.google.com",
+
   // Date ranges where no bookings are allowed at all, regardless of
   // workingHours or availabilityCalendarId. Inclusive, YYYY-MM-DD.
   // Example: { start: "2026-12-22", end: "2027-01-02" }
