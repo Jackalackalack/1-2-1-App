@@ -1,6 +1,55 @@
 // Everything here is safe to edit. No code changes needed elsewhere.
 
 export const config = {
+
+  // ─── Who you are ────────────────────────────────────────────────────────────
+  // Fill these in to make the site yours. No other file needs touching.
+  owner: {
+    // Your name — appears in the nav, page heading, calendar invites, and footer.
+    name: "Jack Abraham",
+
+    // Your public website. Used for the nav logo link.
+    siteUrl: "https://jackabraham.studio",
+
+    // Contact email shown in the nav.
+    email: "jack@jackabraham.studio",
+
+    // Accent colour used for buttons, selected states, and highlights.
+    // Any valid CSS colour works: "#C55228", "rgb(197,82,40)", etc.
+    accentColor: "#C55228",
+
+    // Main heading and tagline on the booking page.
+    bookingHeading: "Book a 1-2-1 with Jack Abraham",
+    bookingTagline: "Music · Education · Mentorship",
+
+    // Intro paragraphs shown on the booking page, one string per paragraph.
+    intro: [
+      "Hello and welcome,",
+      "To book a 1-2-1 with me select a slot from the available options.",
+      "Please share an agenda and any questions or topics before we speak so we can use our time as effectively as possible.",
+      "I look forward to speaking with you.",
+    ],
+
+    // Nav links. Set to [] to show just your name with no links.
+    navLinks: [
+      { label: "Music",      href: "https://jackabraham.studio/#music" },
+      { label: "Education",  href: "https://jackabraham.studio/#education" },
+      { label: "Mentorship", href: "https://jackabraham.studio/#mentorship" },
+      { label: "Blog",       href: "https://jackabraham.studio/blog/" },
+      { label: "AI Tools",   href: "https://jackabraham.studio/ai-tools/index.html" },
+      { label: "Contact",    href: "mailto:jack@jackabraham.studio" },
+    ] as { label: string; href: string }[],
+
+    // Footer links. Remove either to hide that icon.
+    githubUrl:   "https://github.com/Jackalackalack",
+    linkedinUrl: "https://www.linkedin.com/in/jackcabraham/",
+
+    // Browser tab title and meta description.
+    pageTitle:       "Book a 1-2-1 — Jack Abraham",
+    pageDescription: "Book a free 30-minute 1-2-1 with Jack Abraham. Music, education and mentorship.",
+  },
+
+  // ─── Meeting settings ────────────────────────────────────────────────────────
   // Your timezone. Used to interpret working hours below.
   timezone: "Europe/London",
 

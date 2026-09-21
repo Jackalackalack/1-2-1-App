@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
+import { config } from "@/lib/config";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Book a 1-2-1 — Jack Abraham",
-  description: "Book a free 30-minute 1-2-1 with Jack Abraham. Music, education and mentorship.",
+  title: config.owner.pageTitle,
+  description: config.owner.pageDescription,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" style={{ "--accent": config.owner.accentColor } as React.CSSProperties}>
       <body>{children}</body>
     </html>
   );
