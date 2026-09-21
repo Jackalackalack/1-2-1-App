@@ -1,4 +1,6 @@
-# Jack Abraham - Booking
+# Jack Abraham — 1-2-1 Booking App
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Jackalackalack/1-2-1-App)
 
 A single-page booking tool. Visitors pick a free slot, it checks your Google
 Calendar for conflicts, then creates the event with a Google Meet link and
