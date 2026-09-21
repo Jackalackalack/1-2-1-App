@@ -41,6 +41,13 @@ export const config = {
   // Calendar ID. Leave as null to just use workingHours instead.
   availabilityCalendarId: "c1556377917879a161d18a38ccfc147963947ec0fcb0f9f98a1126ddea74694f@group.calendar.google.com",
 
+  // Same as availabilityCalendarId, but for the Microsoft version (/api/ms-availability).
+  // Get your Outlook calendar ID from the Microsoft Graph Explorer:
+  //   https://developer.microsoft.com/en-us/graph/graph-explorer
+  //   → GET /me/calendars  (find the "id" field for your "Bookable Hours" calendar)
+  // Leave as null to use workingHours instead.
+  msAvailabilityCalendarId: null as string | null,
+
   // Date ranges where no bookings are allowed at all, regardless of
   // workingHours or availabilityCalendarId. Inclusive, YYYY-MM-DD.
   // Example: { start: "2026-12-22", end: "2027-01-02" }
