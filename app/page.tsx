@@ -3,6 +3,10 @@ import SiteCreditBar from "@/components/SiteCreditBar";
 import { config } from "@/lib/config";
 
 export default function Home() {
+  const raw = (process.env.CALENDAR_PROVIDER ?? "google").toLowerCase();
+  const provider: "google" | "microsoft" = raw === "microsoft" ? "microsoft" : "google";
+  const meetingFormat = provider === "microsoft" ? "Microsoft Teams" : "Google Meet";
+
   return (
     <>
       <nav className="site-nav">
@@ -29,7 +33,7 @@ export default function Home() {
             <div className="intro-copy">
               <p>Hello and welcome,</p>
               <p>To book a 1-2-1 with me select a slot from the available options.</p>
-              <p>You will get a calendar invite with a Google Meet link.</p>
+              <p>You will get a calendar invite with a {meetingFormat} link.</p>
               <p>
                 Please share an agenda and any questions or topics before we
                 speak so we can use our time as effectively as possible.
@@ -44,7 +48,7 @@ export default function Home() {
               </div>
               <div>
                 <span>Format</span>
-                <span>Google Meet</span>
+                <span>{meetingFormat}</span>
               </div>
               <div>
                 <span>Timezone shown</span>
@@ -57,7 +61,7 @@ export default function Home() {
             </div>
           </section>
 
-          <BookingForm />
+          <BookingForm provider={provider} />
         </div>
       </main>
 

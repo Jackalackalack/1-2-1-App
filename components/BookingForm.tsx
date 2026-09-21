@@ -24,7 +24,11 @@ function groupByLocalDay(slots: string[]): SlotsByDay {
   }));
 }
 
-export default function BookingForm() {
+export default function BookingForm({ provider = "google" }: { provider?: "google" | "microsoft" }) {
+  const availabilityEndpoint = provider === "microsoft" ? "/api/ms-availability" : "/api/availability";
+  const bookEndpoint = provider === "microsoft" ? "/api/ms-book" : "/api/book";
+  const meetLabel = provider === "microsoft" ? "Teams link" : "Meet link";
+
   const [slots, setSlots] = useState<string[] | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [activeDay, setActiveDay] = useState<string | null>(null);
@@ -35,10 +39,10 @@ export default function BookingForm() {
   const [company, setCompany] = useState(""); // honeypot, kept empty by real visitors
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
-  const [confirmation, setConfirmation] = useState<{ meetLink: string | null } | null>(null);
+  const [confirmation, setConfirmation] = useState<{ joinLink: string | null } | null>(null);
 
   useEffect(() => {
-    fetch("/api/availability")
+    fetch(availabilityEndpoint)
       .then((res) => res.json())
       .then((data) => {
         if (data.error) throw new Error(data.error);
@@ -47,7 +51,7 @@ export default function BookingForm() {
         if (grouped.length > 0) setActiveDay(grouped[0].dayKey);
       })
       .catch((err) => setLoadError(err.message ?? "Could not load availability"));
-  }, []);
+  }, [availabilityEndpoint]);
 
   const grouped = useMemo(() => groupByLocalDay(slots ?? []), [slots]);
   const activeDaySlots = grouped.find((g) => g.dayKey === activeDay)?.slots ?? [];
@@ -58,14 +62,14 @@ export default function BookingForm() {
     setSubmitting(true);
     setSubmitError(null);
     try {
-      const res = await fetch("/api/book", {
+      const res = await fetch(bookEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, startTime: selectedSlot, notes, company }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Something went wrong");
-      setConfirmation({ meetLink: data.meetLink });
+      setConfirmation({ joinLink: data.meetLink ?? data.teamsLink ?? null });
     } catch (err: any) {
       setSubmitError(err.message ?? "Something went wrong");
     } finally {
@@ -82,9 +86,9 @@ export default function BookingForm() {
             You are on the calendar. A confirmation with the calendar invite is on
             its way to your email.
           </p>
-          {confirmation.meetLink && (
+          {confirmation.joinLink && (
             <p>
-              Meet link: <a href={confirmation.meetLink}>{confirmation.meetLink}</a>
+              {meetLabel}: <a href={confirmation.joinLink}>{confirmation.joinLink}</a>
             </p>
           )}
         </div>
